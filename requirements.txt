@@ -1,0 +1,14 @@
+# Lower bounds only: I could not verify the latest versions from my offline sandbox.
+# After the smoke test passes, run:  pip freeze > requirements.lock   and pin from that.
+langgraph>=0.6
+langchain-core>=0.3
+langchain-google-genai>=2.1
+google-genai>=1.0
+pydantic>=2.7
+python-dotenv>=1.0
+streamlit>=1.40
+pandas>=2.2
+numpy>=1.26
+mcp>=1.2,<2        # mcp 2.x renamed FastMCP; the server handles both, the client smoke test targets 1.x
+reportlab>=4.0
+pytest>=8

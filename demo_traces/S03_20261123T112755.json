@@ -1,0 +1,336 @@
+{
+  "run_id": "2c1b8f6ae477",
+  "scenario_id": "S03",
+  "mode": "live-gemini",
+  "models": {
+    "fast": "gemini-3.5-flash-lite",
+    "reasoning": "gemini-3.5-flash-lite"
+  },
+  "alarm": {
+    "scenario_id": "S03",
+    "tag": "UPW_B_DO_POU",
+    "description": "Dissolved oxygen at Loop B point of use jumped above the 1.0 ppb limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "notes_scan": {
+    "blocked": false,
+    "hits": [],
+    "original": "DO alarm on Loop B about an hour and a half ago. Maintenance finished the B-07 valve job before that.",
+    "for_llm": "<untrusted_field_log>DO alarm on Loop B about an hour and a half ago. Maintenance finished the B-07 valve job before that.</untrusted_field_log>"
+  },
+  "triage": {
+    "tag": "UPW_B_DO_POU",
+    "parameter": "Dissolved oxygen at point of use",
+    "unit": "ppb",
+    "measured": 2.4003,
+    "limit": 1.0,
+    "direction": "upper",
+    "uncertainty_half_width": 0.15,
+    "band_lower": 1.0,
+    "band_upper": 1.15,
+    "margin": -1.4003,
+    "reading_verdict": "FAIL",
+    "calibration_valid": true,
+    "calibration_note": "calibration valid",
+    "verdict": "FAIL",
+    "limit_source": "SEMI F63 / ASTM D5127 (to be verified against the standard)"
+  },
+  "evidence": [
+    {
+      "id": "E1",
+      "tool": "check_guardband_and_cal",
+      "args": {
+        "tag": "UPW_B_DO_POU"
+      },
+      "output": {
+        "tag": "UPW_B_DO_POU",
+        "parameter": "Dissolved oxygen at point of use",
+        "unit": "ppb",
+        "measured": 2.4003,
+        "limit": 1.0,
+        "direction": "upper",
+        "uncertainty_half_width": 0.15,
+        "band_lower": 1.0,
+        "band_upper": 1.15,
+        "margin": -1.4003,
+        "reading_verdict": "FAIL",
+        "calibration_valid": true,
+        "calibration_note": "calibration valid",
+        "verdict": "FAIL",
+        "limit_source": "SEMI F63 / ASTM D5127 (to be verified against the standard)"
+      }
+    },
+    {
+      "id": "E2",
+      "tool": "compute_rate_of_change",
+      "args": {
+        "minutes_back": 120,
+        "tag": "UPW_B_DO_POU"
+      },
+      "output": {
+        "tag": "UPW_B_DO_POU",
+        "unit": "ppb",
+        "minutes_back": 120,
+        "slope_per_hour": 1.1204,
+        "mean_first_half": 1.4052,
+        "mean_second_half": 2.396
+      }
+    },
+    {
+      "id": "E3",
+      "tool": "query_sensor_window",
+      "args": {
+        "tag": "UPW_B_DO_POU",
+        "minutes_back": 120
+      },
+      "output": {
+        "tag": "UPW_B_DO_POU",
+        "parameter": "Dissolved oxygen at point of use",
+        "unit": "ppb",
+        "asset_id": "POU_ETCH_1",
+        "minutes_back": 120,
+        "first": 0.2966,
+        "last": 2.4003,
+        "min": 0.2201,
+        "max": 2.4839,
+        "mean": 1.9006,
+        "window_start": "2026-03-10T10:00",
+        "window_end": "2026-03-10T11:59"
+      }
+    },
+    {
+      "id": "E4",
+      "tool": "get_recent_work_orders",
+      "args": {
+        "hours": 24
+      },
+      "output": {
+        "asset_id": "ALL",
+        "hours": 24,
+        "count": 1,
+        "work_orders": [
+          {
+            "asset": "VALVE_B_07",
+            "hours_ago": 2,
+            "text": "Replaced PVDF diaphragm valve on Loop B; returned to service.",
+            "flagged": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "E5",
+      "tool": "search_knowledge_base",
+      "args": {
+        "query": "dissolved oxygen spike UPW loop B valve replacement"
+      },
+      "output": {
+        "query": "dissolved oxygen spike UPW loop B valve replacement",
+        "results": [
+          {
+            "chunk_id": "UPW-06",
+            "title": "Dissolved oxygen rise after valve work",
+            "source": "upw_om_guide.md",
+            "text": "A step rise in dissolved oxygen at the point of use shortly after maintenance on a valve or fitting upstream suggests air ingress through a leaking diaphragm or seal. Check the work-order history for recent valve work on assets upstream of the point of use. Corrective action: re-inspect and re-seat or replace the diaphragm, leak-test, and flush.",
+            "flagged": false
+          },
+          {
+            "chunk_id": "AMC-01",
+            "title": "AMC rising in a process bay",
+            "source": "amc_om_guide.md",
+            "text": "Compare AMC at the make-up air inlet with AMC in the bay. If the inlet is steady while the bay rises, the chemical filtration stage is the likely source.",
+            "flagged": false
+          },
+          {
+            "chunk_id": "UPW-02",
+            "title": "UV-185nm lamp ageing",
+            "source": "upw_om_guide.md",
+            "text": "UV lamp output falls as running hours accumulate. When lamp hours exceed the rated life, oxidation of organics becomes incomplete and TOC drifts upward, often with a falling UV intensity reading. Corrective action: plan lamp replacement, verify intensity after replacement, and re-measure TOC after the loop has flushed.",
+            "flagged": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "E6",
+      "tool": "find_similar_past_cases",
+      "args": {},
+      "output": {
+        "count": 0,
+        "cases": [],
+        "note": "No approved past cases in memory yet."
+      }
+    },
+    {
+      "id": "E7",
+      "tool": "get_asset_dependencies",
+      "args": {
+        "asset_id": "POU_ETCH_1"
+      },
+      "output": {
+        "asset_id": "POU_ETCH_1",
+        "upstream": [
+          "VALVE_B_07"
+        ],
+        "downstream": [],
+        "sensor_tags": [
+          "UPW_B_DO_POU",
+          "UPW_B_RES_POU",
+          "UPW_B_TOC_POU"
+        ]
+      }
+    },
+    {
+      "id": "E8",
+      "tool": "trace_upstream_loop",
+      "args": {
+        "asset_id": "POU_ETCH_1"
+      },
+      "output": {
+        "asset_id": "POU_ETCH_1",
+        "upstream": [
+          {
+            "asset_id": "VALVE_B_07",
+            "sensor_tags": []
+          },
+          {
+            "asset_id": "POLISH_B",
+            "sensor_tags": []
+          },
+          {
+            "asset_id": "EDI_B",
+            "sensor_tags": [
+              "UPW_B_RES_EDI",
+              "UPW_B_TOC_EDI"
+            ]
+          },
+          {
+            "asset_id": "UV_B",
+            "sensor_tags": [
+              "UPW_B_UV_INT"
+            ]
+          },
+          {
+            "asset_id": "RO_B",
+            "sensor_tags": [
+              "UPW_B_COND_RO"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "E9",
+      "tool": "get_resin_and_lamp_runtime",
+      "args": {
+        "asset_id": "POLISH_B"
+      },
+      "output": {
+        "asset_id": "POLISH_B",
+        "kind": "mixed-bed resin",
+        "hours": 2300,
+        "rated_hours": 4500,
+        "percent_of_rated_life": 51.1
+      }
+    },
+    {
+      "id": "E10",
+      "tool": "get_resin_and_lamp_runtime",
+      "args": {
+        "asset_id": "UV_B"
+      },
+      "output": {
+        "asset_id": "UV_B",
+        "kind": "UV-185nm lamp",
+        "hours": 5600,
+        "rated_hours": 8000,
+        "percent_of_rated_life": 70.0
+      }
+    },
+    {
+      "id": "E11",
+      "tool": "get_resin_and_lamp_runtime",
+      "args": {
+        "asset_id": "RO_B"
+      },
+      "output": {
+        "asset_id": "RO_B",
+        "kind": "RO membrane",
+        "hours": 15500,
+        "rated_hours": 24000,
+        "percent_of_rated_life": 64.6
+      }
+    }
+  ],
+  "report": {
+    "root_cause_code": "VALVE_DIAPHRAGM_LEAK",
+    "confidence": "high",
+    "hypotheses": [
+      {
+        "code": "VALVE_DIAPHRAGM_LEAK",
+        "status": "supported",
+        "evidence_ids": [
+          "E4",
+          "E5",
+          "E7"
+        ]
+      },
+      {
+        "code": "UV_LAMP_DECAY",
+        "status": "ruled_out",
+        "evidence_ids": [
+          "E10"
+        ]
+      },
+      {
+        "code": "RESIN_EXHAUSTION",
+        "status": "ruled_out",
+        "evidence_ids": [
+          "E9"
+        ]
+      },
+      {
+        "code": "RO_MEMBRANE_DEGRADATION",
+        "status": "ruled_out",
+        "evidence_ids": [
+          "E11"
+        ]
+      },
+      {
+        "code": "SENSOR_DRIFT",
+        "status": "ruled_out",
+        "evidence_ids": [
+          "E1"
+        ]
+      }
+    ],
+    "supporting_evidence_ids": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E5",
+      "E7",
+      "E8"
+    ],
+    "knowledge_base_citations": [
+      "UPW-06"
+    ],
+    "narrative": "An investigation was conducted for the dissolved oxygen excursion at sensor tag UPW_B_DO_POU. The measured value was 2.4003 ppb against an upper limit of 1.0 ppb, resulting in a reading verdict of FAIL (E1). The rate of change analysis showed a slope per hour of 1.1204 ppb, with mean values rising from 1.4052 ppb in the first half to 2.396 ppb in the second half of the 120-minute window (E2). Asset dependencies and upstream tracing identify VALVE_B_07 directly upstream of POU_ETCH_1 (E7, E8). Recent work orders within 24 hours indicate that valve VALVE_B_07 was replaced on Loop B 2 hours prior (E4). Knowledge base article UPW-06 notes that a step rise in dissolved oxygen shortly after maintenance on an upstream valve or fitting suggests air ingress through a leaking diaphragm or seal (E5). Other runtime metrics show UV_B at 70.0 percent of rated life, POLISH_B at 51.1 percent, and RO_B at 64.6 percent, ruling out resin or lamp exhaustion (E9, E10, E11). The calibration was verified as valid (E1). Therefore, the root cause is determined to be a valve diaphragm leak.",
+    "recommended_actions": [
+      "Re-inspect and re-seat or replace the diaphragm on VALVE_B_07 for qualified engineer review.",
+      "Perform a thorough leak test on the newly replaced valve and fitting components for qualified engineer review.",
+      "Flush the affected loop and monitor sensor tag UPW_B_DO_POU until readings stabilize below the 1.0 ppb limit for qualified engineer review."
+    ]
+  },
+  "validation": {
+    "ok": true,
+    "violations": []
+  },
+  "hold_advisory": "ADVISORY (generated by code, not by the AI): potential wafer-lot hold for lots processed on the affected point of use. QA and process engineering decide.",
+  "status": "AWAITING_HUMAN_REVIEW",
+  "recorded_at": "2026-11-23T11:27:55+00:00",
+  "tool_rounds": 3,
+  "quality_flags": [],
+  "quality_notes": []
+}

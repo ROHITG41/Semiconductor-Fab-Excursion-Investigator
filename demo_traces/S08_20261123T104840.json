@@ -1,0 +1,327 @@
+{
+  "run_id": "b4b0f3a9b279",
+  "scenario_id": "S08",
+  "mode": "live-gemini",
+  "models": {
+    "fast": "gemini-3.5-flash-lite",
+    "reasoning": "gemini-3.5-flash-lite"
+  },
+  "alarm": {
+    "scenario_id": "S08",
+    "tag": "UPW_B_RES_POU",
+    "description": "Resistivity at Loop B point of use has fallen below the 18.20 MOhm.cm limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "notes_scan": {
+    "blocked": false,
+    "hits": [],
+    "original": "Loop B resistivity dropping. We changed the UV lamp and the B-07 valve recently so please check those first.",
+    "for_llm": "<untrusted_field_log>Loop B resistivity dropping. We changed the UV lamp and the B-07 valve recently so please check those first.</untrusted_field_log>"
+  },
+  "triage": {
+    "tag": "UPW_B_RES_POU",
+    "parameter": "Resistivity at point of use",
+    "unit": "MOhm.cm",
+    "measured": 17.5999,
+    "limit": 18.2,
+    "direction": "lower",
+    "uncertainty_half_width": 0.05,
+    "band_lower": 18.15,
+    "band_upper": 18.2,
+    "margin": -0.6001,
+    "reading_verdict": "FAIL",
+    "calibration_valid": true,
+    "calibration_note": "calibration valid",
+    "verdict": "FAIL",
+    "limit_source": "SEMI F63 / ASTM D5127 (to be verified against the standard)"
+  },
+  "evidence": [
+    {
+      "id": "E1",
+      "tool": "check_guardband_and_cal",
+      "args": {
+        "tag": "UPW_B_RES_POU"
+      },
+      "output": {
+        "tag": "UPW_B_RES_POU",
+        "parameter": "Resistivity at point of use",
+        "unit": "MOhm.cm",
+        "measured": 17.5999,
+        "limit": 18.2,
+        "direction": "lower",
+        "uncertainty_half_width": 0.05,
+        "band_lower": 18.15,
+        "band_upper": 18.2,
+        "margin": -0.6001,
+        "reading_verdict": "FAIL",
+        "calibration_valid": true,
+        "calibration_note": "calibration valid",
+        "verdict": "FAIL",
+        "limit_source": "SEMI F63 / ASTM D5127 (to be verified against the standard)"
+      }
+    },
+    {
+      "id": "E2",
+      "tool": "query_sensor_window",
+      "args": {
+        "minutes_back": 120,
+        "tag": "UPW_B_RES_POU"
+      },
+      "output": {
+        "tag": "UPW_B_RES_POU",
+        "parameter": "Resistivity at point of use",
+        "unit": "MOhm.cm",
+        "asset_id": "POU_ETCH_1",
+        "minutes_back": 120,
+        "first": 18.154,
+        "last": 17.5999,
+        "min": 17.5945,
+        "max": 18.1656,
+        "mean": 17.8583,
+        "window_start": "2026-03-10T10:00",
+        "window_end": "2026-03-10T11:59"
+      }
+    },
+    {
+      "id": "E3",
+      "tool": "compute_rate_of_change",
+      "args": {
+        "tag": "UPW_B_RES_POU",
+        "minutes_back": 120
+      },
+      "output": {
+        "tag": "UPW_B_RES_POU",
+        "unit": "MOhm.cm",
+        "minutes_back": 120,
+        "slope_per_hour": -0.2789,
+        "mean_first_half": 17.9968,
+        "mean_second_half": 17.7198
+      }
+    },
+    {
+      "id": "E4",
+      "tool": "get_recent_work_orders",
+      "args": {
+        "hours": 72
+      },
+      "output": {
+        "asset_id": "ALL",
+        "hours": 72,
+        "count": 2,
+        "work_orders": [
+          {
+            "asset": "UV_B",
+            "hours_ago": 40,
+            "text": "Replaced UV-185nm lamp on Loop B.",
+            "flagged": false
+          },
+          {
+            "asset": "VALVE_B_07",
+            "hours_ago": 5,
+            "text": "Replaced PVDF diaphragm valve on Loop B; flush passed.",
+            "flagged": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "E5",
+      "tool": "find_similar_past_cases",
+      "args": {
+        "k": 3
+      },
+      "output": {
+        "count": 0,
+        "cases": [],
+        "note": "No approved past cases in memory yet."
+      }
+    },
+    {
+      "id": "E6",
+      "tool": "search_knowledge_base",
+      "args": {
+        "query": "UPW resistivity drop point of use Loop B POLISH_B UV resin exhaustion",
+        "k": 3
+      },
+      "output": {
+        "query": "UPW resistivity drop point of use Loop B POLISH_B UV resin exhaustion",
+        "results": [
+          {
+            "chunk_id": "UPW-04",
+            "title": "Mixed-bed polishing resin exhaustion",
+            "source": "upw_om_guide.md",
+            "text": "Exhausted ion-exchange resin lets ions break through, so resistivity drops quickly. Corrective action: replace or regenerate the resin bed, flush to rinse down, and verify resistivity recovers toward the limit before returning the loop to service.",
+            "flagged": false
+          },
+          {
+            "chunk_id": "AMC-01",
+            "title": "AMC rising in a process bay",
+            "source": "amc_om_guide.md",
+            "text": "Compare AMC at the make-up air inlet with AMC in the bay. If the inlet is steady while the bay rises, the chemical filtration stage is the likely source.",
+            "flagged": false
+          },
+          {
+            "chunk_id": "UPW-03",
+            "title": "Resistivity drop at point of use",
+            "source": "upw_om_guide.md",
+            "text": "A sudden fall in resistivity downstream of the polishing stage, with normal resistivity at the EDI outlet, points to the mixed-bed polishing resin. Compare resin runtime with its rated life. A gradual fall that follows rising RO permeate conductivity points upstream to the RO stage instead.",
+            "flagged": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "E7",
+      "tool": "trace_upstream_loop",
+      "args": {
+        "asset_id": "POU_ETCH_1"
+      },
+      "output": {
+        "asset_id": "POU_ETCH_1",
+        "upstream": [
+          {
+            "asset_id": "VALVE_B_07",
+            "sensor_tags": []
+          },
+          {
+            "asset_id": "POLISH_B",
+            "sensor_tags": []
+          },
+          {
+            "asset_id": "EDI_B",
+            "sensor_tags": [
+              "UPW_B_RES_EDI",
+              "UPW_B_TOC_EDI"
+            ]
+          },
+          {
+            "asset_id": "UV_B",
+            "sensor_tags": [
+              "UPW_B_UV_INT"
+            ]
+          },
+          {
+            "asset_id": "RO_B",
+            "sensor_tags": [
+              "UPW_B_COND_RO"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "E8",
+      "tool": "get_resin_and_lamp_runtime",
+      "args": {
+        "asset_id": "POLISH_B"
+      },
+      "output": {
+        "asset_id": "POLISH_B",
+        "kind": "mixed-bed resin",
+        "hours": 5050,
+        "rated_hours": 4500,
+        "percent_of_rated_life": 112.2
+      }
+    },
+    {
+      "id": "E9",
+      "tool": "get_resin_and_lamp_runtime",
+      "args": {
+        "asset_id": "UV_B"
+      },
+      "output": {
+        "asset_id": "UV_B",
+        "kind": "UV-185nm lamp",
+        "hours": 40,
+        "rated_hours": 8000,
+        "percent_of_rated_life": 0.5
+      }
+    },
+    {
+      "id": "E10",
+      "tool": "query_sensor_window",
+      "args": {
+        "tag": "UPW_B_RES_EDI",
+        "minutes_back": 120
+      },
+      "output": {
+        "tag": "UPW_B_RES_EDI",
+        "parameter": "Resistivity at EDI outlet",
+        "unit": "MOhm.cm",
+        "asset_id": "EDI_B",
+        "minutes_back": 120,
+        "first": 18.0242,
+        "last": 18.0572,
+        "min": 17.9868,
+        "max": 18.0989,
+        "mean": 18.0499,
+        "window_start": "2026-03-10T10:00",
+        "window_end": "2026-03-10T11:59"
+      }
+    }
+  ],
+  "report": {
+    "root_cause_code": "RESIN_EXHAUSTION",
+    "confidence": "high",
+    "hypotheses": [
+      {
+        "code": "RESIN_EXHAUSTION",
+        "status": "supported",
+        "evidence_ids": [
+          "E6",
+          "E8"
+        ]
+      },
+      {
+        "code": "UV_LAMP_DECAY",
+        "status": "ruled_out",
+        "evidence_ids": [
+          "E4",
+          "E9"
+        ]
+      },
+      {
+        "code": "VALVE_DIAPHRAGM_LEAK",
+        "status": "ruled_out",
+        "evidence_ids": [
+          "E4"
+        ]
+      },
+      {
+        "code": "SENSOR_DRIFT",
+        "status": "ruled_out",
+        "evidence_ids": [
+          "E1"
+        ]
+      }
+    ],
+    "supporting_evidence_ids": [
+      "E1",
+      "E2",
+      "E3",
+      "E6",
+      "E8",
+      "E10"
+    ],
+    "knowledge_base_citations": [
+      "UPW-04",
+      "UPW-03"
+    ],
+    "narrative": "The resistivity at point of use for sensor UPW_B_RES_POU measured 17.5999 MOhm.cm against the required limit of 18.2 MOhm.cm, resulting in an unacceptably low margin of -0.6001 MOhm.cm. Sensor window data and rate of change calculations show a steady drop over the last 120 minutes with a mean of 17.8583 MOhm.cm. Meanwhile, upstream EDI resistivity (UPW_B_RES_EDI) remains normal with a mean of 18.0499 MOhm.cm, isolating the issue downstream of the EDI stage. Mixed-bed resin runtime for POLISH_B has reached 5050 hours, representing 112.2 percent of its 4500-hour rated life. Knowledge base references UPW-03 and UPW-04 indicate that an exhausted ion-exchange resin bed causes a rapid drop in resistivity downstream while keeping EDI output normal. Recent work orders show that the UV-185nm lamp and valve VALVE_B_07 were recently serviced and run well below rated life (40 hours, 0.5 percent of 8000 rated hours), ruling out UV lamp decay and valve diaphragm leaks as root causes. Calibration is valid.",
+    "recommended_actions": [
+      "Recommend qualified engineering review to replace or regenerate the mixed-bed polishing resin bed in POLISH_B, which currently stands at 5050 operating hours.",
+      "Recommend performing a complete system flush and rinse down following resin replacement.",
+      "Recommend verifying that resistivity recovers toward the 18.2 MOhm.cm limit before returning Loop B to service."
+    ]
+  },
+  "validation": {
+    "ok": true,
+    "violations": []
+  },
+  "hold_advisory": "ADVISORY (generated by code, not by the AI): potential wafer-lot hold for lots processed on the affected point of use. QA and process engineering decide.",
+  "status": "AWAITING_HUMAN_REVIEW",
+  "recorded_at": "2026-11-23T10:48:40+00:00",
+  "tool_rounds": 4,
+  "quality_flags": [],
+  "quality_notes": []
+}

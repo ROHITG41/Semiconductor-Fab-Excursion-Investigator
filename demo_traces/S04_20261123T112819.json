@@ -1,0 +1,282 @@
+{
+  "run_id": "f531974d4193",
+  "scenario_id": "S04",
+  "mode": "live-gemini",
+  "models": {
+    "fast": "gemini-3.5-flash-lite",
+    "reasoning": "gemini-3.5-flash-lite"
+  },
+  "alarm": {
+    "scenario_id": "S04",
+    "tag": "N2_POU_H2O",
+    "description": "Moisture in bulk N2 at the litho point of use is rising toward the 10 ppb limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "notes_scan": {
+    "blocked": false,
+    "hits": [],
+    "original": "N2 moisture climbing on the litho header since mid-morning.",
+    "for_llm": "<untrusted_field_log>N2 moisture climbing on the litho header since mid-morning.</untrusted_field_log>"
+  },
+  "triage": {
+    "tag": "N2_POU_H2O",
+    "parameter": "N2 moisture at point of use",
+    "unit": "ppb",
+    "measured": 13.0868,
+    "limit": 10.0,
+    "direction": "upper",
+    "uncertainty_half_width": 1.5,
+    "band_lower": 10.0,
+    "band_upper": 11.5,
+    "margin": -3.0868,
+    "reading_verdict": "FAIL",
+    "calibration_valid": true,
+    "calibration_note": "calibration valid",
+    "verdict": "FAIL",
+    "limit_source": "SEMI C3 / F52 (to be verified against the standard)"
+  },
+  "evidence": [
+    {
+      "id": "E1",
+      "tool": "query_sensor_window",
+      "args": {
+        "tag": "N2_POU_H2O",
+        "minutes_back": 120
+      },
+      "output": {
+        "tag": "N2_POU_H2O",
+        "parameter": "N2 moisture at point of use",
+        "unit": "ppb",
+        "asset_id": "POU_N2_LITHO",
+        "minutes_back": 120,
+        "first": 2.4755,
+        "last": 13.0868,
+        "min": 2.1683,
+        "max": 13.2537,
+        "mean": 6.8505,
+        "window_start": "2026-03-10T10:00",
+        "window_end": "2026-03-10T11:59"
+      }
+    },
+    {
+      "id": "E2",
+      "tool": "compute_rate_of_change",
+      "args": {
+        "tag": "N2_POU_H2O",
+        "minutes_back": 120
+      },
+      "output": {
+        "tag": "N2_POU_H2O",
+        "unit": "ppb",
+        "minutes_back": 120,
+        "slope_per_hour": 5.6476,
+        "mean_first_half": 4.0118,
+        "mean_second_half": 9.6893
+      }
+    },
+    {
+      "id": "E3",
+      "tool": "get_recent_work_orders",
+      "args": {
+        "hours": 72
+      },
+      "output": {
+        "asset_id": "ALL",
+        "hours": 72,
+        "count": 1,
+        "work_orders": [
+          {
+            "asset": "N2_TANK",
+            "hours_ago": 40,
+            "text": "Bulk tank level and pressure check, normal.",
+            "flagged": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "E4",
+      "tool": "get_resin_and_lamp_runtime",
+      "args": {
+        "asset_id": "N2_PURIFIER"
+      },
+      "output": {
+        "asset_id": "N2_PURIFIER",
+        "kind": "N2 purifier bed",
+        "hours": 11640,
+        "rated_hours": 12000,
+        "percent_of_rated_life": 97.0
+      }
+    },
+    {
+      "id": "E5",
+      "tool": "trace_upstream_loop",
+      "args": {
+        "asset_id": "POU_N2_LITHO"
+      },
+      "output": {
+        "asset_id": "POU_N2_LITHO",
+        "upstream": [
+          {
+            "asset_id": "N2_FILTER",
+            "sensor_tags": []
+          },
+          {
+            "asset_id": "N2_PURIFIER",
+            "sensor_tags": [
+              "N2_PURIF_H2O"
+            ]
+          },
+          {
+            "asset_id": "N2_TANK",
+            "sensor_tags": [
+              "N2_TANK_H2O"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "E6",
+      "tool": "search_knowledge_base",
+      "args": {
+        "k": 3,
+        "query": "N2 moisture purifier saturation breakthrough litho"
+      },
+      "output": {
+        "query": "N2 moisture purifier saturation breakthrough litho",
+        "results": [
+          {
+            "chunk_id": "GAS-02",
+            "title": "Purifier bed saturation",
+            "source": "bulk_gas_om_guide.md",
+            "text": "A purifier bed near the end of its rated capacity lets moisture through. Check purifier runtime against its rated life. Corrective action: regenerate or replace the bed, then verify moisture at the purifier outlet and the point of use.",
+            "flagged": false
+          },
+          {
+            "chunk_id": "AMC-01",
+            "title": "AMC rising in a process bay",
+            "source": "amc_om_guide.md",
+            "text": "Compare AMC at the make-up air inlet with AMC in the bay. If the inlet is steady while the bay rises, the chemical filtration stage is the likely source.",
+            "flagged": false
+          },
+          {
+            "chunk_id": "GAS-01",
+            "title": "Moisture rising in bulk nitrogen",
+            "source": "bulk_gas_om_guide.md",
+            "text": "Compare moisture at the tank outlet, the purifier outlet and the point of use. If only the readings at and after the purifier rise, the purifier is the likely source. If the tank outlet is also high, look upstream at the supply.",
+            "flagged": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "E7",
+      "tool": "find_similar_past_cases",
+      "args": {
+        "k": 3
+      },
+      "output": {
+        "count": 0,
+        "cases": [],
+        "note": "No approved past cases in memory yet."
+      }
+    },
+    {
+      "id": "E8",
+      "tool": "query_sensor_window",
+      "args": {
+        "minutes_back": 120,
+        "tag": "N2_PURIF_H2O"
+      },
+      "output": {
+        "tag": "N2_PURIF_H2O",
+        "parameter": "N2 moisture, purifier outlet",
+        "unit": "ppb",
+        "asset_id": "N2_PURIFIER",
+        "minutes_back": 120,
+        "first": 2.1601,
+        "last": 13.998,
+        "min": 2.125,
+        "max": 13.998,
+        "mean": 7.5676,
+        "window_start": "2026-03-10T10:00",
+        "window_end": "2026-03-10T11:59"
+      }
+    },
+    {
+      "id": "E9",
+      "tool": "query_sensor_window",
+      "args": {
+        "minutes_back": 120,
+        "tag": "N2_TANK_H2O"
+      },
+      "output": {
+        "tag": "N2_TANK_H2O",
+        "parameter": "N2 moisture, tank outlet",
+        "unit": "ppb",
+        "asset_id": "N2_TANK",
+        "minutes_back": 120,
+        "first": 2.3402,
+        "last": 1.9037,
+        "min": 1.3781,
+        "max": 2.4754,
+        "mean": 1.9653,
+        "window_start": "2026-03-10T10:00",
+        "window_end": "2026-03-10T11:59"
+      }
+    }
+  ],
+  "report": {
+    "root_cause_code": "N2_PURIFIER_SATURATION",
+    "confidence": "high",
+    "hypotheses": [
+      {
+        "code": "N2_PURIFIER_SATURATION",
+        "status": "supported",
+        "evidence_ids": [
+          "E4",
+          "E6",
+          "E8",
+          "E9"
+        ]
+      },
+      {
+        "code": "SENSOR_DRIFT",
+        "status": "ruled_out",
+        "evidence_ids": [
+          "E1",
+          "E8"
+        ]
+      }
+    ],
+    "supporting_evidence_ids": [
+      "E1",
+      "E2",
+      "E4",
+      "E6",
+      "E8",
+      "E9"
+    ],
+    "knowledge_base_citations": [
+      "GAS-01",
+      "GAS-02"
+    ],
+    "narrative": "An investigation was conducted regarding the nitrogen moisture level at point of use tag N2_POU_H2O, which measured 13.0868 ppb against a limit of 10.0 ppb. Sensor window queries show moisture climbing from a first reading of 2.4755 to 13.0868 over 120 minutes with a slope of 5.6476 ppb per hour. Upstream analysis comparing N2_TANK_H2O (mean 1.9653 ppb) and N2_PURIF_H2O (mean 7.5676 ppb, ending at 13.998 ppb) confirms that moisture levels are normal at the tank outlet but rise significantly at and after the purifier. Furthermore, runtime data for the N2_PURIFIER indicates 11640 operating hours out of 12000 rated hours, reaching 97.0 percent of rated life. Knowledge base citations GAS-01 and GAS-02 confirm that when moisture rises at the purifier outlet while the tank outlet remains stable, the purifier is the likely source due to bed saturation near the end of rated capacity.",
+    "recommended_actions": [
+      "Recommend qualified engineer review for regenerating or replacing the nitrogen purifier bed",
+      "Verify moisture levels at both the purifier outlet and the point of use following maintenance",
+      "Inspect the N2_PURIFIER asset runtime and operating parameters"
+    ]
+  },
+  "validation": {
+    "ok": true,
+    "violations": []
+  },
+  "hold_advisory": "ADVISORY (generated by code, not by the AI): potential wafer-lot hold for lots processed on the affected point of use. QA and process engineering decide.",
+  "status": "AWAITING_HUMAN_REVIEW",
+  "recorded_at": "2026-11-23T11:28:19+00:00",
+  "tool_rounds": 3,
+  "quality_flags": [],
+  "quality_notes": []
+}

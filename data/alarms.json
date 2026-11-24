@@ -1,0 +1,86 @@
+{
+  "S01": {
+    "scenario_id": "S01",
+    "tag": "UPW_B_TOC_POU",
+    "description": "TOC at Loop B point of use is rising and above the 1.0 ppb limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "S02": {
+    "scenario_id": "S02",
+    "tag": "UPW_A_RES_POU",
+    "description": "Resistivity at Loop A point of use has dropped below the 18.20 MOhm.cm limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "S03": {
+    "scenario_id": "S03",
+    "tag": "UPW_B_DO_POU",
+    "description": "Dissolved oxygen at Loop B point of use jumped above the 1.0 ppb limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "S04": {
+    "scenario_id": "S04",
+    "tag": "N2_POU_H2O",
+    "description": "Moisture in bulk N2 at the litho point of use is rising toward the 10 ppb limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "S05": {
+    "scenario_id": "S05",
+    "tag": "UPW_B_TOC_POU",
+    "description": "TOC at Loop B point of use is reading above the 1.0 ppb limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "S06": {
+    "scenario_id": "S06",
+    "tag": "UPW_A_RES_POU",
+    "description": "Resistivity at Loop A point of use is slowly falling below the 18.20 MOhm.cm limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "S07": {
+    "scenario_id": "S07",
+    "tag": "UPW_A_TOC_POU",
+    "description": "TOC at Loop A point of use is above the 1.0 ppb limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "S08": {
+    "scenario_id": "S08",
+    "tag": "UPW_B_RES_POU",
+    "description": "Resistivity at Loop B point of use has fallen below the 18.20 MOhm.cm limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "S09": {
+    "scenario_id": "S09",
+    "tag": "UPW_A_RES_POU",
+    "description": "Resistivity at Loop A point of use read just under the 18.20 MOhm.cm limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "S10": {
+    "scenario_id": "S10",
+    "tag": "AMC_LITHO_BAY",
+    "description": "Airborne molecular contamination in the litho bay is above the 1.0 ppbv limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "S11": {
+    "scenario_id": "S11",
+    "tag": "UPW_A_RES_POU",
+    "description": "Resistivity at Loop A point of use has dropped below the 18.20 MOhm.cm limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "S12": {
+    "scenario_id": "S12",
+    "tag": "UPW_A_TOC_POU",
+    "description": "TOC at Loop A point of use is above the 1.0 ppb limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "S13": {
+    "scenario_id": "S13",
+    "tag": "UPW_B_TOC_POU",
+    "description": "TOC at Loop B point of use is rising and above the 1.0 ppb limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "S14": {
+    "scenario_id": "S14",
+    "tag": "UPW_B_DO_POU",
+    "description": "Dissolved oxygen at Loop B point of use jumped above the 1.0 ppb limit.",
+    "triggered_at": "2026-03-10T11:59"
+  }
+}

@@ -1,0 +1,311 @@
+{
+  "run_id": "bd24a14f245c",
+  "scenario_id": "S02",
+  "mode": "live-gemini",
+  "models": {
+    "fast": "gemini-3.5-flash-lite",
+    "reasoning": "gemini-3.5-flash-lite"
+  },
+  "alarm": {
+    "scenario_id": "S02",
+    "tag": "UPW_A_RES_POU",
+    "description": "Resistivity at Loop A point of use has dropped below the 18.20 MOhm.cm limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "notes_scan": {
+    "blocked": false,
+    "hits": [],
+    "original": "Loop A resistivity fell suddenly around 10 am. Upstream looked normal on the HMI.",
+    "for_llm": "<untrusted_field_log>Loop A resistivity fell suddenly around 10 am. Upstream looked normal on the HMI.</untrusted_field_log>"
+  },
+  "triage": {
+    "tag": "UPW_A_RES_POU",
+    "parameter": "Resistivity at point of use",
+    "unit": "MOhm.cm",
+    "measured": 16.9343,
+    "limit": 18.2,
+    "direction": "lower",
+    "uncertainty_half_width": 0.05,
+    "band_lower": 18.15,
+    "band_upper": 18.2,
+    "margin": -1.2657,
+    "reading_verdict": "FAIL",
+    "calibration_valid": true,
+    "calibration_note": "calibration valid",
+    "verdict": "FAIL",
+    "limit_source": "SEMI F63 / ASTM D5127 (to be verified against the standard)"
+  },
+  "evidence": [
+    {
+      "id": "E1",
+      "tool": "check_guardband_and_cal",
+      "args": {
+        "tag": "UPW_A_RES_POU"
+      },
+      "output": {
+        "tag": "UPW_A_RES_POU",
+        "parameter": "Resistivity at point of use",
+        "unit": "MOhm.cm",
+        "measured": 16.9343,
+        "limit": 18.2,
+        "direction": "lower",
+        "uncertainty_half_width": 0.05,
+        "band_lower": 18.15,
+        "band_upper": 18.2,
+        "margin": -1.2657,
+        "reading_verdict": "FAIL",
+        "calibration_valid": true,
+        "calibration_note": "calibration valid",
+        "verdict": "FAIL",
+        "limit_source": "SEMI F63 / ASTM D5127 (to be verified against the standard)"
+      }
+    },
+    {
+      "id": "E2",
+      "tool": "compute_rate_of_change",
+      "args": {
+        "minutes_back": 120,
+        "tag": "UPW_A_RES_POU"
+      },
+      "output": {
+        "tag": "UPW_A_RES_POU",
+        "unit": "MOhm.cm",
+        "minutes_back": 120,
+        "slope_per_hour": -0.5885,
+        "mean_first_half": 17.457,
+        "mean_second_half": 16.9364
+      }
+    },
+    {
+      "id": "E3",
+      "tool": "query_sensor_window",
+      "args": {
+        "minutes_back": 120,
+        "tag": "UPW_A_RES_POU"
+      },
+      "output": {
+        "tag": "UPW_A_RES_POU",
+        "parameter": "Resistivity at point of use",
+        "unit": "MOhm.cm",
+        "asset_id": "POU_LITHO_1",
+        "minutes_back": 120,
+        "first": 18.2497,
+        "last": 16.9343,
+        "min": 16.8978,
+        "max": 18.258,
+        "mean": 17.1967,
+        "window_start": "2026-03-10T10:00",
+        "window_end": "2026-03-10T11:59"
+      }
+    },
+    {
+      "id": "E4",
+      "tool": "get_recent_work_orders",
+      "args": {
+        "hours": 48
+      },
+      "output": {
+        "asset_id": "ALL",
+        "hours": 48,
+        "count": 1,
+        "work_orders": [
+          {
+            "asset": "EDI_A",
+            "hours_ago": 48,
+            "text": "EDI A stack voltage check, within range.",
+            "flagged": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "E5",
+      "tool": "search_knowledge_base",
+      "args": {
+        "query": "UPW resistivity drop Loop A point of use ion exchange resin polish UV"
+      },
+      "output": {
+        "query": "UPW resistivity drop Loop A point of use ion exchange resin polish UV",
+        "results": [
+          {
+            "chunk_id": "UPW-04",
+            "title": "Mixed-bed polishing resin exhaustion",
+            "source": "upw_om_guide.md",
+            "text": "Exhausted ion-exchange resin lets ions break through, so resistivity drops quickly. Corrective action: replace or regenerate the resin bed, flush to rinse down, and verify resistivity recovers toward the limit before returning the loop to service.",
+            "flagged": false
+          },
+          {
+            "chunk_id": "AMC-01",
+            "title": "AMC rising in a process bay",
+            "source": "amc_om_guide.md",
+            "text": "Compare AMC at the make-up air inlet with AMC in the bay. If the inlet is steady while the bay rises, the chemical filtration stage is the likely source.",
+            "flagged": false
+          },
+          {
+            "chunk_id": "UPW-03",
+            "title": "Resistivity drop at point of use",
+            "source": "upw_om_guide.md",
+            "text": "A sudden fall in resistivity downstream of the polishing stage, with normal resistivity at the EDI outlet, points to the mixed-bed polishing resin. Compare resin runtime with its rated life. A gradual fall that follows rising RO permeate conductivity points upstream to the RO stage instead.",
+            "flagged": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "E6",
+      "tool": "find_similar_past_cases",
+      "args": {},
+      "output": {
+        "count": 0,
+        "cases": [],
+        "note": "No approved past cases in memory yet."
+      }
+    },
+    {
+      "id": "E7",
+      "tool": "trace_upstream_loop",
+      "args": {
+        "asset_id": "POU_LITHO_1"
+      },
+      "output": {
+        "asset_id": "POU_LITHO_1",
+        "upstream": [
+          {
+            "asset_id": "VALVE_A_07",
+            "sensor_tags": []
+          },
+          {
+            "asset_id": "POLISH_A",
+            "sensor_tags": []
+          },
+          {
+            "asset_id": "EDI_A",
+            "sensor_tags": [
+              "UPW_A_RES_EDI",
+              "UPW_A_TOC_EDI"
+            ]
+          },
+          {
+            "asset_id": "UV_A",
+            "sensor_tags": [
+              "UPW_A_UV_INT"
+            ]
+          },
+          {
+            "asset_id": "RO_A",
+            "sensor_tags": [
+              "UPW_A_COND_RO"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "E8",
+      "tool": "get_resin_and_lamp_runtime",
+      "args": {
+        "asset_id": "POLISH_A"
+      },
+      "output": {
+        "asset_id": "POLISH_A",
+        "kind": "mixed-bed resin",
+        "hours": 5380,
+        "rated_hours": 4500,
+        "percent_of_rated_life": 119.6
+      }
+    },
+    {
+      "id": "E9",
+      "tool": "get_resin_and_lamp_runtime",
+      "args": {
+        "asset_id": "UV_A"
+      },
+      "output": {
+        "asset_id": "UV_A",
+        "kind": "UV-185nm lamp",
+        "hours": 5200,
+        "rated_hours": 8000,
+        "percent_of_rated_life": 65.0
+      }
+    },
+    {
+      "id": "E10",
+      "tool": "get_resin_and_lamp_runtime",
+      "args": {
+        "asset_id": "RO_A"
+      },
+      "output": {
+        "asset_id": "RO_A",
+        "kind": "RO membrane",
+        "hours": 14000,
+        "rated_hours": 24000,
+        "percent_of_rated_life": 58.3
+      }
+    }
+  ],
+  "report": {
+    "root_cause_code": "RESIN_EXHAUSTION",
+    "confidence": "high",
+    "hypotheses": [
+      {
+        "code": "RESIN_EXHAUSTION",
+        "status": "supported",
+        "evidence_ids": [
+          "E8",
+          "E5",
+          "E3"
+        ]
+      },
+      {
+        "code": "UV_LAMP_DECAY",
+        "status": "ruled_out",
+        "evidence_ids": [
+          "E9"
+        ]
+      },
+      {
+        "code": "RO_MEMBRANE_DEGRADATION",
+        "status": "ruled_out",
+        "evidence_ids": [
+          "E10"
+        ]
+      },
+      {
+        "code": "SENSOR_DRIFT",
+        "status": "ruled_out",
+        "evidence_ids": [
+          "E1"
+        ]
+      }
+    ],
+    "supporting_evidence_ids": [
+      "E1",
+      "E2",
+      "E3",
+      "E5",
+      "E8",
+      "E9",
+      "E10"
+    ],
+    "knowledge_base_citations": [
+      "UPW-04",
+      "UPW-03"
+    ],
+    "narrative": "The ultra-pure water resistivity at point of use tag UPW_A_RES_POU measured 16.9343 MOhm.cm, which is below the limit of 18.2 MOhm.cm, resulting in a reading verdict of FAIL. The sensor calibration is valid. Runtime inspection for POLISH_A shows the mixed-bed resin has reached 5380 hours, which is 119.6 percent of its rated life of 4500 hours, exceeding its operational rating. In contrast, UV lamp runtime for UV_A is at 65.0 percent of rated life and RO membrane runtime for RO_A is at 58.3 percent of rated life. Knowledge base citations UPW-04 and UPW-03 indicate that mixed-bed polishing resin exhaustion causes a sudden fall in resistivity downstream of the polishing stage. Therefore, resin exhaustion is identified as the root cause.",
+    "recommended_actions": [
+      "Review mixed-bed resin replacement procedures for POLISH_A.",
+      "Replace or regenerate the exhausted resin bed.",
+      "Flush the system to rinse down and verify resistivity recovers toward the limit before returning the loop to service."
+    ]
+  },
+  "validation": {
+    "ok": true,
+    "violations": []
+  },
+  "hold_advisory": "ADVISORY (generated by code, not by the AI): potential wafer-lot hold for lots processed on the affected point of use. QA and process engineering decide.",
+  "status": "AWAITING_HUMAN_REVIEW",
+  "recorded_at": "2026-11-23T11:27:34+00:00",
+  "tool_rounds": 3,
+  "quality_flags": [],
+  "quality_notes": []
+}

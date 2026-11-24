@@ -1,0 +1,766 @@
+{
+  "S01": {
+    "work_orders": [
+      {
+        "asset": "VALVE_B_07",
+        "hours_ago": 14,
+        "text": "Replaced PVDF diaphragm valve on Loop B; leak test and flush passed."
+      },
+      {
+        "asset": "RO_B",
+        "hours_ago": 60,
+        "text": "Routine RO B pressure log check, no action."
+      }
+    ],
+    "runtime": {
+      "UV_A": {
+        "kind": "UV-185nm lamp",
+        "hours": 5200,
+        "rated_hours": 8000
+      },
+      "UV_B": {
+        "kind": "UV-185nm lamp",
+        "hours": 8420,
+        "rated_hours": 8000
+      },
+      "POLISH_A": {
+        "kind": "mixed-bed resin",
+        "hours": 2100,
+        "rated_hours": 4500
+      },
+      "POLISH_B": {
+        "kind": "mixed-bed resin",
+        "hours": 2300,
+        "rated_hours": 4500
+      },
+      "RO_A": {
+        "kind": "RO membrane",
+        "hours": 14000,
+        "rated_hours": 24000
+      },
+      "RO_B": {
+        "kind": "RO membrane",
+        "hours": 15500,
+        "rated_hours": 24000
+      },
+      "N2_PURIFIER": {
+        "kind": "N2 purifier bed",
+        "hours": 5200,
+        "rated_hours": 12000
+      },
+      "CHEM_FILTER_01": {
+        "kind": "AMC chemical filter",
+        "hours": 2500,
+        "rated_hours": 7000
+      }
+    },
+    "calibration_overrides": {},
+    "tool_outages": []
+  },
+  "S02": {
+    "work_orders": [
+      {
+        "asset": "EDI_A",
+        "hours_ago": 48,
+        "text": "EDI A stack voltage check, within range."
+      }
+    ],
+    "runtime": {
+      "UV_A": {
+        "kind": "UV-185nm lamp",
+        "hours": 5200,
+        "rated_hours": 8000
+      },
+      "UV_B": {
+        "kind": "UV-185nm lamp",
+        "hours": 5600,
+        "rated_hours": 8000
+      },
+      "POLISH_A": {
+        "kind": "mixed-bed resin",
+        "hours": 5380,
+        "rated_hours": 4500
+      },
+      "POLISH_B": {
+        "kind": "mixed-bed resin",
+        "hours": 2300,
+        "rated_hours": 4500
+      },
+      "RO_A": {
+        "kind": "RO membrane",
+        "hours": 14000,
+        "rated_hours": 24000
+      },
+      "RO_B": {
+        "kind": "RO membrane",
+        "hours": 15500,
+        "rated_hours": 24000
+      },
+      "N2_PURIFIER": {
+        "kind": "N2 purifier bed",
+        "hours": 5200,
+        "rated_hours": 12000
+      },
+      "CHEM_FILTER_01": {
+        "kind": "AMC chemical filter",
+        "hours": 2500,
+        "rated_hours": 7000
+      }
+    },
+    "calibration_overrides": {},
+    "tool_outages": []
+  },
+  "S03": {
+    "work_orders": [
+      {
+        "asset": "VALVE_B_07",
+        "hours_ago": 2,
+        "text": "Replaced PVDF diaphragm valve on Loop B; returned to service."
+      },
+      {
+        "asset": "UV_B",
+        "hours_ago": 30,
+        "text": "UV B intensity log reviewed, no action."
+      }
+    ],
+    "runtime": {
+      "UV_A": {
+        "kind": "UV-185nm lamp",
+        "hours": 5200,
+        "rated_hours": 8000
+      },
+      "UV_B": {
+        "kind": "UV-185nm lamp",
+        "hours": 5600,
+        "rated_hours": 8000
+      },
+      "POLISH_A": {
+        "kind": "mixed-bed resin",
+        "hours": 2100,
+        "rated_hours": 4500
+      },
+      "POLISH_B": {
+        "kind": "mixed-bed resin",
+        "hours": 2300,
+        "rated_hours": 4500
+      },
+      "RO_A": {
+        "kind": "RO membrane",
+        "hours": 14000,
+        "rated_hours": 24000
+      },
+      "RO_B": {
+        "kind": "RO membrane",
+        "hours": 15500,
+        "rated_hours": 24000
+      },
+      "N2_PURIFIER": {
+        "kind": "N2 purifier bed",
+        "hours": 5200,
+        "rated_hours": 12000
+      },
+      "CHEM_FILTER_01": {
+        "kind": "AMC chemical filter",
+        "hours": 2500,
+        "rated_hours": 7000
+      }
+    },
+    "calibration_overrides": {},
+    "tool_outages": []
+  },
+  "S04": {
+    "work_orders": [
+      {
+        "asset": "N2_TANK",
+        "hours_ago": 40,
+        "text": "Bulk tank level and pressure check, normal."
+      }
+    ],
+    "runtime": {
+      "UV_A": {
+        "kind": "UV-185nm lamp",
+        "hours": 5200,
+        "rated_hours": 8000
+      },
+      "UV_B": {
+        "kind": "UV-185nm lamp",
+        "hours": 5600,
+        "rated_hours": 8000
+      },
+      "POLISH_A": {
+        "kind": "mixed-bed resin",
+        "hours": 2100,
+        "rated_hours": 4500
+      },
+      "POLISH_B": {
+        "kind": "mixed-bed resin",
+        "hours": 2300,
+        "rated_hours": 4500
+      },
+      "RO_A": {
+        "kind": "RO membrane",
+        "hours": 14000,
+        "rated_hours": 24000
+      },
+      "RO_B": {
+        "kind": "RO membrane",
+        "hours": 15500,
+        "rated_hours": 24000
+      },
+      "N2_PURIFIER": {
+        "kind": "N2 purifier bed",
+        "hours": 11640,
+        "rated_hours": 12000
+      },
+      "CHEM_FILTER_01": {
+        "kind": "AMC chemical filter",
+        "hours": 2500,
+        "rated_hours": 7000
+      }
+    },
+    "calibration_overrides": {},
+    "tool_outages": []
+  },
+  "S05": {
+    "work_orders": [
+      {
+        "asset": "TOC_POU_B_ANALYZER",
+        "hours_ago": 70,
+        "text": "Calibration due date passed; deferred to next shutdown."
+      }
+    ],
+    "runtime": {
+      "UV_A": {
+        "kind": "UV-185nm lamp",
+        "hours": 5200,
+        "rated_hours": 8000
+      },
+      "UV_B": {
+        "kind": "UV-185nm lamp",
+        "hours": 5600,
+        "rated_hours": 8000
+      },
+      "POLISH_A": {
+        "kind": "mixed-bed resin",
+        "hours": 2100,
+        "rated_hours": 4500
+      },
+      "POLISH_B": {
+        "kind": "mixed-bed resin",
+        "hours": 2300,
+        "rated_hours": 4500
+      },
+      "RO_A": {
+        "kind": "RO membrane",
+        "hours": 14000,
+        "rated_hours": 24000
+      },
+      "RO_B": {
+        "kind": "RO membrane",
+        "hours": 15500,
+        "rated_hours": 24000
+      },
+      "N2_PURIFIER": {
+        "kind": "N2 purifier bed",
+        "hours": 5200,
+        "rated_hours": 12000
+      },
+      "CHEM_FILTER_01": {
+        "kind": "AMC chemical filter",
+        "hours": 2500,
+        "rated_hours": 7000
+      }
+    },
+    "calibration_overrides": {
+      "UPW_B_TOC_POU": {
+        "last_cal": "2025-02-15",
+        "cal_due": "2026-02-15"
+      }
+    },
+    "tool_outages": []
+  },
+  "S06": {
+    "work_orders": [
+      {
+        "asset": "RO_A",
+        "hours_ago": 55,
+        "text": "RO A CIP not performed this cycle, scheduled for next week."
+      }
+    ],
+    "runtime": {
+      "UV_A": {
+        "kind": "UV-185nm lamp",
+        "hours": 5200,
+        "rated_hours": 8000
+      },
+      "UV_B": {
+        "kind": "UV-185nm lamp",
+        "hours": 5600,
+        "rated_hours": 8000
+      },
+      "POLISH_A": {
+        "kind": "mixed-bed resin",
+        "hours": 2100,
+        "rated_hours": 4500
+      },
+      "POLISH_B": {
+        "kind": "mixed-bed resin",
+        "hours": 2300,
+        "rated_hours": 4500
+      },
+      "RO_A": {
+        "kind": "RO membrane",
+        "hours": 26400,
+        "rated_hours": 24000
+      },
+      "RO_B": {
+        "kind": "RO membrane",
+        "hours": 15500,
+        "rated_hours": 24000
+      },
+      "N2_PURIFIER": {
+        "kind": "N2 purifier bed",
+        "hours": 5200,
+        "rated_hours": 12000
+      },
+      "CHEM_FILTER_01": {
+        "kind": "AMC chemical filter",
+        "hours": 2500,
+        "rated_hours": 7000
+      }
+    },
+    "calibration_overrides": {},
+    "tool_outages": []
+  },
+  "S07": {
+    "work_orders": [
+      {
+        "asset": "UV_A",
+        "hours_ago": 20,
+        "text": "UV A lamp hours review, scheduled for replacement planning."
+      }
+    ],
+    "runtime": {
+      "UV_A": {
+        "kind": "UV-185nm lamp",
+        "hours": 8150,
+        "rated_hours": 8000
+      },
+      "UV_B": {
+        "kind": "UV-185nm lamp",
+        "hours": 5600,
+        "rated_hours": 8000
+      },
+      "POLISH_A": {
+        "kind": "mixed-bed resin",
+        "hours": 2100,
+        "rated_hours": 4500
+      },
+      "POLISH_B": {
+        "kind": "mixed-bed resin",
+        "hours": 2300,
+        "rated_hours": 4500
+      },
+      "RO_A": {
+        "kind": "RO membrane",
+        "hours": 14000,
+        "rated_hours": 24000
+      },
+      "RO_B": {
+        "kind": "RO membrane",
+        "hours": 15500,
+        "rated_hours": 24000
+      },
+      "N2_PURIFIER": {
+        "kind": "N2 purifier bed",
+        "hours": 5200,
+        "rated_hours": 12000
+      },
+      "CHEM_FILTER_01": {
+        "kind": "AMC chemical filter",
+        "hours": 2500,
+        "rated_hours": 7000
+      }
+    },
+    "calibration_overrides": {},
+    "tool_outages": []
+  },
+  "S08": {
+    "work_orders": [
+      {
+        "asset": "UV_B",
+        "hours_ago": 40,
+        "text": "Replaced UV-185nm lamp on Loop B."
+      },
+      {
+        "asset": "VALVE_B_07",
+        "hours_ago": 5,
+        "text": "Replaced PVDF diaphragm valve on Loop B; flush passed."
+      }
+    ],
+    "runtime": {
+      "UV_A": {
+        "kind": "UV-185nm lamp",
+        "hours": 5200,
+        "rated_hours": 8000
+      },
+      "UV_B": {
+        "kind": "UV-185nm lamp",
+        "hours": 40,
+        "rated_hours": 8000
+      },
+      "POLISH_A": {
+        "kind": "mixed-bed resin",
+        "hours": 2100,
+        "rated_hours": 4500
+      },
+      "POLISH_B": {
+        "kind": "mixed-bed resin",
+        "hours": 5050,
+        "rated_hours": 4500
+      },
+      "RO_A": {
+        "kind": "RO membrane",
+        "hours": 14000,
+        "rated_hours": 24000
+      },
+      "RO_B": {
+        "kind": "RO membrane",
+        "hours": 15500,
+        "rated_hours": 24000
+      },
+      "N2_PURIFIER": {
+        "kind": "N2 purifier bed",
+        "hours": 5200,
+        "rated_hours": 12000
+      },
+      "CHEM_FILTER_01": {
+        "kind": "AMC chemical filter",
+        "hours": 2500,
+        "rated_hours": 7000
+      }
+    },
+    "calibration_overrides": {},
+    "tool_outages": []
+  },
+  "S09": {
+    "work_orders": [
+      {
+        "asset": "EDI_A",
+        "hours_ago": 30,
+        "text": "EDI A routine inspection, no action."
+      }
+    ],
+    "runtime": {
+      "UV_A": {
+        "kind": "UV-185nm lamp",
+        "hours": 5200,
+        "rated_hours": 8000
+      },
+      "UV_B": {
+        "kind": "UV-185nm lamp",
+        "hours": 5600,
+        "rated_hours": 8000
+      },
+      "POLISH_A": {
+        "kind": "mixed-bed resin",
+        "hours": 2100,
+        "rated_hours": 4500
+      },
+      "POLISH_B": {
+        "kind": "mixed-bed resin",
+        "hours": 2300,
+        "rated_hours": 4500
+      },
+      "RO_A": {
+        "kind": "RO membrane",
+        "hours": 14000,
+        "rated_hours": 24000
+      },
+      "RO_B": {
+        "kind": "RO membrane",
+        "hours": 15500,
+        "rated_hours": 24000
+      },
+      "N2_PURIFIER": {
+        "kind": "N2 purifier bed",
+        "hours": 5200,
+        "rated_hours": 12000
+      },
+      "CHEM_FILTER_01": {
+        "kind": "AMC chemical filter",
+        "hours": 2500,
+        "rated_hours": 7000
+      }
+    },
+    "calibration_overrides": {},
+    "tool_outages": []
+  },
+  "S10": {
+    "work_orders": [
+      {
+        "asset": "CHEM_FILTER_01",
+        "hours_ago": 65,
+        "text": "Chemical filter differential pressure check, within range."
+      }
+    ],
+    "runtime": {
+      "UV_A": {
+        "kind": "UV-185nm lamp",
+        "hours": 5200,
+        "rated_hours": 8000
+      },
+      "UV_B": {
+        "kind": "UV-185nm lamp",
+        "hours": 5600,
+        "rated_hours": 8000
+      },
+      "POLISH_A": {
+        "kind": "mixed-bed resin",
+        "hours": 2100,
+        "rated_hours": 4500
+      },
+      "POLISH_B": {
+        "kind": "mixed-bed resin",
+        "hours": 2300,
+        "rated_hours": 4500
+      },
+      "RO_A": {
+        "kind": "RO membrane",
+        "hours": 14000,
+        "rated_hours": 24000
+      },
+      "RO_B": {
+        "kind": "RO membrane",
+        "hours": 15500,
+        "rated_hours": 24000
+      },
+      "N2_PURIFIER": {
+        "kind": "N2 purifier bed",
+        "hours": 5200,
+        "rated_hours": 12000
+      },
+      "CHEM_FILTER_01": {
+        "kind": "AMC chemical filter",
+        "hours": 6930,
+        "rated_hours": 7000
+      }
+    },
+    "calibration_overrides": {},
+    "tool_outages": []
+  },
+  "S11": {
+    "work_orders": [
+      {
+        "asset": "RO_A",
+        "hours_ago": 100,
+        "text": "RO A chemical clean (CIP) completed; permeate conductivity back to normal."
+      }
+    ],
+    "runtime": {
+      "UV_A": {
+        "kind": "UV-185nm lamp",
+        "hours": 5200,
+        "rated_hours": 8000
+      },
+      "UV_B": {
+        "kind": "UV-185nm lamp",
+        "hours": 5600,
+        "rated_hours": 8000
+      },
+      "POLISH_A": {
+        "kind": "mixed-bed resin",
+        "hours": 5000,
+        "rated_hours": 4500
+      },
+      "POLISH_B": {
+        "kind": "mixed-bed resin",
+        "hours": 2300,
+        "rated_hours": 4500
+      },
+      "RO_A": {
+        "kind": "RO membrane",
+        "hours": 25100,
+        "rated_hours": 24000
+      },
+      "RO_B": {
+        "kind": "RO membrane",
+        "hours": 15500,
+        "rated_hours": 24000
+      },
+      "N2_PURIFIER": {
+        "kind": "N2 purifier bed",
+        "hours": 5200,
+        "rated_hours": 12000
+      },
+      "CHEM_FILTER_01": {
+        "kind": "AMC chemical filter",
+        "hours": 2500,
+        "rated_hours": 7000
+      }
+    },
+    "calibration_overrides": {},
+    "tool_outages": []
+  },
+  "S12": {
+    "work_orders": [
+      {
+        "asset": "TOC_POU_A_ANALYZER",
+        "hours_ago": 7,
+        "text": "TOC A analyzer detector lamp replaced; post-maintenance verification not yet done."
+      }
+    ],
+    "runtime": {
+      "UV_A": {
+        "kind": "UV-185nm lamp",
+        "hours": 5200,
+        "rated_hours": 8000
+      },
+      "UV_B": {
+        "kind": "UV-185nm lamp",
+        "hours": 5600,
+        "rated_hours": 8000
+      },
+      "POLISH_A": {
+        "kind": "mixed-bed resin",
+        "hours": 2100,
+        "rated_hours": 4500
+      },
+      "POLISH_B": {
+        "kind": "mixed-bed resin",
+        "hours": 2300,
+        "rated_hours": 4500
+      },
+      "RO_A": {
+        "kind": "RO membrane",
+        "hours": 14000,
+        "rated_hours": 24000
+      },
+      "RO_B": {
+        "kind": "RO membrane",
+        "hours": 15500,
+        "rated_hours": 24000
+      },
+      "N2_PURIFIER": {
+        "kind": "N2 purifier bed",
+        "hours": 5200,
+        "rated_hours": 12000
+      },
+      "CHEM_FILTER_01": {
+        "kind": "AMC chemical filter",
+        "hours": 2500,
+        "rated_hours": 7000
+      }
+    },
+    "calibration_overrides": {},
+    "tool_outages": []
+  },
+  "S13": {
+    "work_orders": [
+      {
+        "asset": "RO_B",
+        "hours_ago": 50,
+        "text": "Routine RO B pressure log check, no action."
+      }
+    ],
+    "runtime": {
+      "UV_A": {
+        "kind": "UV-185nm lamp",
+        "hours": 5200,
+        "rated_hours": 8000
+      },
+      "UV_B": {
+        "kind": "UV-185nm lamp",
+        "hours": 8300,
+        "rated_hours": 8000
+      },
+      "POLISH_A": {
+        "kind": "mixed-bed resin",
+        "hours": 2100,
+        "rated_hours": 4500
+      },
+      "POLISH_B": {
+        "kind": "mixed-bed resin",
+        "hours": 2300,
+        "rated_hours": 4500
+      },
+      "RO_A": {
+        "kind": "RO membrane",
+        "hours": 14000,
+        "rated_hours": 24000
+      },
+      "RO_B": {
+        "kind": "RO membrane",
+        "hours": 15500,
+        "rated_hours": 24000
+      },
+      "N2_PURIFIER": {
+        "kind": "N2 purifier bed",
+        "hours": 5200,
+        "rated_hours": 12000
+      },
+      "CHEM_FILTER_01": {
+        "kind": "AMC chemical filter",
+        "hours": 2500,
+        "rated_hours": 7000
+      }
+    },
+    "calibration_overrides": {},
+    "tool_outages": [
+      "get_resin_and_lamp_runtime"
+    ]
+  },
+  "S14": {
+    "work_orders": [
+      {
+        "asset": "VALVE_B_07",
+        "hours_ago": 9,
+        "text": "Replaced PVDF diaphragm valve on Loop B; returned to service after flush."
+      }
+    ],
+    "runtime": {
+      "UV_A": {
+        "kind": "UV-185nm lamp",
+        "hours": 5200,
+        "rated_hours": 8000
+      },
+      "UV_B": {
+        "kind": "UV-185nm lamp",
+        "hours": 5600,
+        "rated_hours": 8000
+      },
+      "POLISH_A": {
+        "kind": "mixed-bed resin",
+        "hours": 2100,
+        "rated_hours": 4500
+      },
+      "POLISH_B": {
+        "kind": "mixed-bed resin",
+        "hours": 2300,
+        "rated_hours": 4500
+      },
+      "RO_A": {
+        "kind": "RO membrane",
+        "hours": 14000,
+        "rated_hours": 24000
+      },
+      "RO_B": {
+        "kind": "RO membrane",
+        "hours": 15500,
+        "rated_hours": 24000
+      },
+      "N2_PURIFIER": {
+        "kind": "N2 purifier bed",
+        "hours": 5200,
+        "rated_hours": 12000
+      },
+      "CHEM_FILTER_01": {
+        "kind": "AMC chemical filter",
+        "hours": 2500,
+        "rated_hours": 7000
+      }
+    },
+    "calibration_overrides": {},
+    "tool_outages": []
+  }
+}

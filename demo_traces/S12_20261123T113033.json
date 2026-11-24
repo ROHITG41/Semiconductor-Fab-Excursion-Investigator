@@ -1,0 +1,307 @@
+{
+  "run_id": "cd6d6ea08408",
+  "scenario_id": "S12",
+  "mode": "live-gemini",
+  "models": {
+    "fast": "gemini-3.5-flash-lite",
+    "reasoning": "gemini-3.5-flash-lite"
+  },
+  "alarm": {
+    "scenario_id": "S12",
+    "tag": "UPW_A_TOC_POU",
+    "description": "TOC at Loop A point of use is above the 1.0 ppb limit.",
+    "triggered_at": "2026-03-10T11:59"
+  },
+  "notes_scan": {
+    "blocked": false,
+    "hits": [],
+    "original": "TOC A reading rose after the analyzer maintenance this morning. Water upstream looked normal on the HMI.",
+    "for_llm": "<untrusted_field_log>TOC A reading rose after the analyzer maintenance this morning. Water upstream looked normal on the HMI.</untrusted_field_log>"
+  },
+  "triage": {
+    "tag": "UPW_A_TOC_POU",
+    "parameter": "TOC at point of use",
+    "unit": "ppb",
+    "measured": 1.4753,
+    "limit": 1.0,
+    "direction": "upper",
+    "uncertainty_half_width": 0.1,
+    "band_lower": 1.0,
+    "band_upper": 1.1,
+    "margin": -0.4753,
+    "reading_verdict": "FAIL",
+    "calibration_valid": true,
+    "calibration_note": "calibration valid",
+    "verdict": "FAIL",
+    "limit_source": "SEMI F63 / ASTM D5127 (to be verified against the standard)"
+  },
+  "evidence": [
+    {
+      "id": "E1",
+      "tool": "check_guardband_and_cal",
+      "args": {
+        "tag": "UPW_A_TOC_POU"
+      },
+      "output": {
+        "tag": "UPW_A_TOC_POU",
+        "parameter": "TOC at point of use",
+        "unit": "ppb",
+        "measured": 1.4753,
+        "limit": 1.0,
+        "direction": "upper",
+        "uncertainty_half_width": 0.1,
+        "band_lower": 1.0,
+        "band_upper": 1.1,
+        "margin": -0.4753,
+        "reading_verdict": "FAIL",
+        "calibration_valid": true,
+        "calibration_note": "calibration valid",
+        "verdict": "FAIL",
+        "limit_source": "SEMI F63 / ASTM D5127 (to be verified against the standard)"
+      }
+    },
+    {
+      "id": "E2",
+      "tool": "query_sensor_window",
+      "args": {
+        "minutes_back": 120,
+        "tag": "UPW_A_TOC_POU"
+      },
+      "output": {
+        "tag": "UPW_A_TOC_POU",
+        "parameter": "TOC at point of use",
+        "unit": "ppb",
+        "asset_id": "POU_LITHO_1",
+        "minutes_back": 120,
+        "first": 0.9066,
+        "last": 1.4753,
+        "min": 0.8891,
+        "max": 1.5219,
+        "mean": 1.203,
+        "window_start": "2026-03-10T10:00",
+        "window_end": "2026-03-10T11:59"
+      }
+    },
+    {
+      "id": "E3",
+      "tool": "compute_rate_of_change",
+      "args": {
+        "tag": "UPW_A_TOC_POU",
+        "minutes_back": 120
+      },
+      "output": {
+        "tag": "UPW_A_TOC_POU",
+        "unit": "ppb",
+        "minutes_back": 120,
+        "slope_per_hour": 0.3048,
+        "mean_first_half": 1.0515,
+        "mean_second_half": 1.3545
+      }
+    },
+    {
+      "id": "E4",
+      "tool": "trace_upstream_loop",
+      "args": {
+        "asset_id": "POU_LITHO_1"
+      },
+      "output": {
+        "asset_id": "POU_LITHO_1",
+        "upstream": [
+          {
+            "asset_id": "VALVE_A_07",
+            "sensor_tags": []
+          },
+          {
+            "asset_id": "POLISH_A",
+            "sensor_tags": []
+          },
+          {
+            "asset_id": "EDI_A",
+            "sensor_tags": [
+              "UPW_A_RES_EDI",
+              "UPW_A_TOC_EDI"
+            ]
+          },
+          {
+            "asset_id": "UV_A",
+            "sensor_tags": [
+              "UPW_A_UV_INT"
+            ]
+          },
+          {
+            "asset_id": "RO_A",
+            "sensor_tags": [
+              "UPW_A_COND_RO"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "E5",
+      "tool": "get_recent_work_orders",
+      "args": {
+        "hours": 24
+      },
+      "output": {
+        "asset_id": "ALL",
+        "hours": 24,
+        "count": 1,
+        "work_orders": [
+          {
+            "asset": "TOC_POU_A_ANALYZER",
+            "hours_ago": 7,
+            "text": "TOC A analyzer detector lamp replaced; post-maintenance verification not yet done.",
+            "flagged": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "E6",
+      "tool": "get_resin_and_lamp_runtime",
+      "args": {
+        "asset_id": "UV_A"
+      },
+      "output": {
+        "asset_id": "UV_A",
+        "kind": "UV-185nm lamp",
+        "hours": 5200,
+        "rated_hours": 8000,
+        "percent_of_rated_life": 65.0
+      }
+    },
+    {
+      "id": "E7",
+      "tool": "get_resin_and_lamp_runtime",
+      "args": {
+        "asset_id": "POLISH_A"
+      },
+      "output": {
+        "asset_id": "POLISH_A",
+        "kind": "mixed-bed resin",
+        "hours": 2100,
+        "rated_hours": 4500,
+        "percent_of_rated_life": 46.7
+      }
+    },
+    {
+      "id": "E8",
+      "tool": "get_resin_and_lamp_runtime",
+      "args": {
+        "asset_id": "RO_A"
+      },
+      "output": {
+        "asset_id": "RO_A",
+        "kind": "RO membrane",
+        "hours": 14000,
+        "rated_hours": 24000,
+        "percent_of_rated_life": 58.3
+      }
+    },
+    {
+      "id": "E9",
+      "tool": "search_knowledge_base",
+      "args": {
+        "k": 3,
+        "query": "TOC analyzer post maintenance lamp replacement drift spike"
+      },
+      "output": {
+        "query": "TOC analyzer post maintenance lamp replacement drift spike",
+        "results": [
+          {
+            "chunk_id": "UPW-01",
+            "title": "TOC rising at point of use",
+            "source": "upw_om_guide.md",
+            "text": "A slow, steady rise in total organic carbon (TOC) at the point of use, with the upstream EDI outlet TOC rising in step, points to the organic-oxidation stage. Check the UV-185nm lamp intensity trend and the lamp runtime against its rated life before looking at downstream causes. If the EDI outlet TOC is normal while only the point-of-use analyzer rises, suspect the analyzer.",
+            "flagged": false
+          },
+          {
+            "chunk_id": "AMC-01",
+            "title": "AMC rising in a process bay",
+            "source": "amc_om_guide.md",
+            "text": "Compare AMC at the make-up air inlet with AMC in the bay. If the inlet is steady while the bay rises, the chemical filtration stage is the likely source.",
+            "flagged": false
+          },
+          {
+            "chunk_id": "UPW-02",
+            "title": "UV-185nm lamp ageing",
+            "source": "upw_om_guide.md",
+            "text": "UV lamp output falls as running hours accumulate. When lamp hours exceed the rated life, oxidation of organics becomes incomplete and TOC drifts upward, often with a falling UV intensity reading. Corrective action: plan lamp replacement, verify intensity after replacement, and re-measure TOC after the loop has flushed.",
+            "flagged": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "E10",
+      "tool": "find_similar_past_cases",
+      "args": {
+        "k": 3
+      },
+      "output": {
+        "count": 0,
+        "cases": [],
+        "note": "No approved past cases in memory yet."
+      }
+    }
+  ],
+  "report": {
+    "root_cause_code": "SENSOR_DRIFT",
+    "confidence": "medium",
+    "hypotheses": [
+      {
+        "code": "SENSOR_DRIFT",
+        "status": "supported",
+        "evidence_ids": [
+          "E5"
+        ]
+      },
+      {
+        "code": "UV_LAMP_DECAY",
+        "status": "ruled_out",
+        "evidence_ids": [
+          "E6"
+        ]
+      },
+      {
+        "code": "RESIN_EXHAUSTION",
+        "status": "ruled_out",
+        "evidence_ids": [
+          "E7"
+        ]
+      },
+      {
+        "code": "RO_MEMBRANE_DEGRADATION",
+        "status": "ruled_out",
+        "evidence_ids": [
+          "E8"
+        ]
+      }
+    ],
+    "supporting_evidence_ids": [
+      "E1",
+      "E2",
+      "E3",
+      "E5"
+    ],
+    "knowledge_base_citations": [
+      "UPW-01"
+    ],
+    "narrative": "The ultra-pure water TOC sensor reading at point of use measured 1.4753 against a limit of 1.0, failing the quality specification. Evidence from work orders indicates that the TOC A analyzer detector lamp was replaced 7 hours ago and post-maintenance verification has not yet been performed. The 120-minute window showed a mean of 1.203 with a slope of 0.3048 per hour. UV-185nm lamp runtime is at 5200 hours out of 8000 rated hours (65.0 percent), mixed-bed resin is at 2100 hours out of 4500 rated hours (46.7 percent), and RO membrane is at 14000 hours out of 24000 rated hours (58.3 percent). These runtimes rule out severe degradation of major media, pointing the investigation toward the recently serviced analyzer sensor.",
+    "recommended_actions": [
+      "Have a qualified engineer perform post-maintenance verification and calibration checks on the TOC A analyzer.",
+      "Allow the ultrapure water loop to flush fully after analyzer servicing and re-measure point of use TOC."
+    ]
+  },
+  "validation": {
+    "ok": true,
+    "violations": []
+  },
+  "hold_advisory": "ADVISORY (generated by code, not by the AI): potential wafer-lot hold for lots processed on the affected point of use. QA and process engineering decide.",
+  "status": "AWAITING_HUMAN_REVIEW",
+  "recorded_at": "2026-11-23T11:30:33+00:00",
+  "tool_rounds": 2,
+  "quality_flags": [],
+  "quality_notes": []
+}
