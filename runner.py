@@ -1,6 +1,8 @@
 """runner.py - run one investigation through the LangGraph app (live Gemini or scripted fake model)."""
 from __future__ import annotations
 
+import time
+
 from config import DATA_DIR
 from engine import assemble
 from schemas import EvidenceItem, InvestigationReport, RunResult, ValidationResult
@@ -12,12 +14,15 @@ def run_graph(scenario_id: str, fast_llm, reasoning_llm, mode: str, models: dict
     from graph import build_graph
     backend = SimBackend(scenario_id, data_dir or DATA_DIR, notes_override=notes_override)
     graph = build_graph(backend, fast_llm, reasoning_llm)
+    t0 = time.time()
     st = graph.invoke({"messages": [], "scenario_id": scenario_id}, config={"recursion_limit": 60})
     evidence = [EvidenceItem.model_validate(e) for e in st["evidence"]]
     report = InvestigationReport.model_validate(st["report"]) if st.get("report") else None
     validation = ValidationResult.model_validate(st["validation"]) if st.get("validation") else None
-    return assemble(backend, mode, models, st["notes_scan"], st["triage"], evidence, report,
-                    st["step_count"], validation)
+    res = assemble(backend, mode, models, st["notes_scan"], st["triage"], evidence, report,
+                   st["step_count"], validation)
+    res.elapsed_s = round(time.time() - t0, 1)
+    return res
 
 
 def run_live_gemini(scenario_id: str, data_dir=None, wrap=None, notes_override=None) -> RunResult:

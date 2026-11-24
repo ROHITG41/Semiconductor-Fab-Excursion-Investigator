@@ -97,5 +97,6 @@ class RunResult(BaseModel):
     status: str
     recorded_at: Optional[str] = None
     tool_rounds: int = 0
+    elapsed_s: Optional[float] = None   # wall-clock seconds for the investigation; None for older recorded runs
     quality_flags: list[str] = Field(default_factory=list)   # computed by code from the evidence; need acknowledgement at sign-off
     quality_notes: list[str] = Field(default_factory=list)   # informational only (e.g. a tool error the agent recovered from)

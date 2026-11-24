@@ -158,6 +158,14 @@ def build_scripted_report(evidence: list[EvidenceItem], triage: dict) -> Investi
 
 
 # ---------------- result assembly ----------------
+def run_metrics_text(run) -> str:
+    """One line of operating metrics, computed from the run record (monitoring)."""
+    errs = sum(1 for e in run.evidence if "error" in e.output)
+    t = f"{run.elapsed_s:.1f} s" if run.elapsed_s is not None else "not recorded"
+    return (f"Run metrics: {len(run.evidence)} tool calls, {errs} tool error{'s' if errs != 1 else ''}, "
+            f"{run.tool_rounds} agent rounds, elapsed {t}.")
+
+
 def split_errors(evidence: list[EvidenceItem]) -> tuple[list[str], list[str]]:
     """(unrecovered, recovered) tool-error evidence ids. An error is 'recovered' when the SAME tool was
     called again later and succeeded (typically: wrong asset id, then corrected)."""

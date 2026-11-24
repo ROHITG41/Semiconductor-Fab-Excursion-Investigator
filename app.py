@@ -17,7 +17,7 @@ import streamlit as st
 import config
 from audit import ACTIONS, ROLES, AuditChain, AuditKeyMissing, get_key, verify_entries
 from dossier import build_dossier
-from engine import run_scripted_offline
+from engine import run_metrics_text, run_scripted_offline
 from memory import EpisodicMemory
 from replay import list_traces, load_trace, save_trace
 from signoff import SignoffError, decide, status_of
@@ -27,6 +27,19 @@ from tools_core import SimBackend
 st.set_page_config(page_title="Semiconductor Fab Excursion Investigator", layout="wide")
 st.title("Semiconductor Fab Excursion Investigator")
 st.caption("Ultra-pure water, bulk-gas and AMC excursions: AI proposes, code decides pass or fail, a named human signs. Codename FAB-SENTRY.")
+st.markdown(
+    "**Lead Systems Architect:** Rohit Kumar, PMP, CEng (India), CEA, FSEr (T\u00dcV)  \n"
+    "**Professional domain:** Mission-Critical Infrastructure & Systems Engineering Specialist  \n"
+    "**Contact & channels:** grohit41@gmail.com | LinkedIn: ROHITG41 (linkedin.com/in/ROHITG41)  \n"
+    "**Central repository:** github.com/ROHITG41/Semiconductor-Fab-Excursion-Investigator")
+st.info(
+    "**Quick guide.** This prototype investigates excursions in semiconductor-fab ultra-pure water (UPW), bulk gas and "
+    "airborne molecular contamination (AMC). **1)** Pick an alarm scenario in the left sidebar. "
+    "**2)** Choose *Replay* (a recorded live Gemini run) or *Scripted offline demo* (rules, no AI), then press **Run investigation**. "
+    "**3)** Read the three layers: the PASS / INDETERMINATE / FAIL verdict is decided by **code**; the likely cause is a **draft from the AI**; "
+    "a **named human** signs it off. Open *Evidence* to see every tool result behind the draft, and download the PDF dossier. "
+    "Worth trying: **S07** (an injected instruction in the operator notes is withheld), **S12** (sensor fault with valid calibration), "
+    "**S13** (a tool is offline and the report says so).")
 st.warning(config.DATA_NOTICE)
 
 alarms = json.loads((config.DATA_DIR / "alarms.json").read_text())
@@ -115,6 +128,7 @@ if run and run.scenario_id == sid:
             st.markdown(f"**{e.id}** `{e.tool}` {e.args}")
             st.json(e.output, expanded=False)
 
+    st.caption(run_metrics_text(run))
     if run.quality_notes:
         st.caption("Note (computed by code): " + " ".join(run.quality_notes))
     if run.quality_flags:

@@ -16,7 +16,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-DEFAULT_SCENARIOS = "S01,S05,S07,S08,S09"
+DEFAULT_SCENARIOS = "all"
 CALLS_PER_AGENT_RUN = 7   # rough planning figure: ~4 tool rounds + 1-2 draft calls
 
 

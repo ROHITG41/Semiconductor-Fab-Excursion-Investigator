@@ -18,6 +18,7 @@ from reportlab.platypus import KeepTogether, Paragraph, SimpleDocTemplate, Space
 
 import config
 from audit import run_digest
+from engine import run_metrics_text
 
 SS = getSampleStyleSheet()
 BODY = ParagraphStyle("body", parent=SS["BodyText"], fontSize=9, leading=12)
@@ -25,6 +26,10 @@ SMALL = ParagraphStyle("small", parent=BODY, fontSize=7.5, leading=9.5, textColo
 CELL = ParagraphStyle("cell", parent=BODY, fontSize=8, leading=10)
 H1 = ParagraphStyle("h1", parent=SS["Heading1"], fontSize=15, spaceAfter=4)
 H2 = ParagraphStyle("h2", parent=SS["Heading2"], fontSize=11, spaceBefore=8, spaceAfter=3, textColor=colors.HexColor("#0F2744"))
+AUTHOR_LINE = ("<b>Prepared by:</b> Rohit Kumar, PMP, CEng (India), CEA, FSEr (T\u00dcV) | Mission-Critical Infrastructure & Systems Engineering Specialist<br/>"
+               "<b>Contact:</b> grohit41@gmail.com | LinkedIn: linkedin.com/in/ROHITG41 | "
+               "<b>Repository:</b> github.com/ROHITG41/Semiconductor-Fab-Excursion-Investigator")
+FOOT_RIGHTS = "Copyright (c) 2026 Rohit Kumar. All rights reserved. For pilots or collaboration: grohit41@gmail.com | linkedin.com/in/ROHITG41"
 BANNER = ParagraphStyle("banner", parent=BODY, alignment=TA_CENTER, fontSize=10, leading=13, textColor=colors.white)
 
 
@@ -57,8 +62,10 @@ def _footer(signed: bool):
         canvas.saveState()
         canvas.setFont("Helvetica", 7)
         canvas.setFillColor(colors.HexColor("#555555"))
-        canvas.drawString(15 * mm, 8 * mm, f"Semiconductor Fab Excursion Investigator | {label}")
-        canvas.drawRightString(195 * mm, 8 * mm, f"Page {doc.page}")
+        canvas.drawString(15 * mm, 11.5 * mm, f"Semiconductor Fab Excursion Investigator | {label}")
+        canvas.drawRightString(195 * mm, 11.5 * mm, f"Page {doc.page}")
+        canvas.setFont("Helvetica", 6.5)
+        canvas.drawString(15 * mm, 7.5 * mm, FOOT_RIGHTS)
         if not signed:
             canvas.setFont("Helvetica-Bold", 54)
             canvas.setFillColor(colors.Color(0.8, 0.1, 0.1, alpha=0.08))
@@ -72,10 +79,10 @@ def _footer(signed: bool):
 def build_dossier(run, final_entry: dict | None = None, chain_head: str | None = None, chain_ok: bool | None = None) -> bytes:
     signed = bool(final_entry and final_entry["action"] == "APPROVE")
     buf = BytesIO()
-    doc = SimpleDocTemplate(buf, pagesize=A4, leftMargin=15 * mm, rightMargin=15 * mm, topMargin=14 * mm, bottomMargin=16 * mm,
+    doc = SimpleDocTemplate(buf, pagesize=A4, leftMargin=15 * mm, rightMargin=15 * mm, topMargin=14 * mm, bottomMargin=20 * mm,
                             title=f"Fab excursion dossier {run.run_id}", author="Semiconductor Fab Excursion Investigator (prototype)")
     t, a = run.triage, run.alarm
-    s = [P("Fab excursion investigation dossier", H1), P(config.DATA_NOTICE, SMALL), Spacer(1, 4)]
+    s = [P("Fab excursion investigation dossier", H1), Paragraph(AUTHOR_LINE.replace('&', '&amp;'), SMALL), Spacer(1, 3), P(config.DATA_NOTICE, SMALL), Spacer(1, 4)]
     if signed:
         s.append(_banner(f"APPROVED by {final_entry['actor']} ({final_entry['role']}) at {final_entry['timestamp_utc']}", "#166534"))
     elif final_entry:
@@ -117,6 +124,7 @@ def build_dossier(run, final_entry: dict | None = None, chain_head: str | None =
 
     if run.quality_notes:
         s += [P(f"Note: {n}", SMALL) for n in run.quality_notes]
+    s.append(P(run_metrics_text(run), SMALL))
 
     s.append(P("3. Operator notes (untrusted data)", H2))
     if run.notes_scan["blocked"]:
