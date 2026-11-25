@@ -30,7 +30,7 @@ st.caption("Ultra-pure water, bulk-gas and AMC excursions: AI proposes, code dec
 st.markdown(
     "**Lead Systems Architect:** Rohit Kumar, PMP, CEng (India), CEA, FSEr (T\u00dcV)  \n"
     "**Professional domain:** Mission-Critical Infrastructure & Systems Engineering Specialist  \n"
-    "**Contact & channels:** grohit41@gmail.com | LinkedIn: ROHITG41 (linkedin.com/in/ROHITG41)  \n"
+    "**Contact & channels:** grohit41@gmail.com | LinkedIn: ROHITG41 (linkedin.com/in/ROHITG41) | X: @RohitG_AI  \n"
     "**Central repository:** github.com/ROHITG41/Semiconductor-Fab-Excursion-Investigator")
 st.info(
     "**Quick guide.** This prototype investigates excursions in semiconductor-fab ultra-pure water (UPW), bulk gas and "

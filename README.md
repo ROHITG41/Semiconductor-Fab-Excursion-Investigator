@@ -15,6 +15,7 @@
 ![Pilot](https://img.shields.io/badge/Real--fab%20pilot-welcome-brightgreen)
 ![License](https://img.shields.io/badge/License-All%20rights%20reserved-lightgrey)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-ROHITG41-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ROHITG41)
+[![X](https://img.shields.io/badge/X-%40RohitG__AI-000000?logo=x&logoColor=white)](https://x.com/RohitG_AI)
 
 *Codename: FAB-SENTRY*
 
@@ -67,7 +68,7 @@ Run a semiconductor fab, a utilities team or a facilities group? Let us test thi
 - **What you get:** the same investigator run on your data, with a scored report like the one described here.
 - **Also open to:** feedback from fab, cleanroom and facilities engineers, and collaboration on evaluation design.
 
-**Contact:** Rohit Kumar, PMP, CEng (India), CEA, FSEr (TÜV) | Email: [grohit41@gmail.com](mailto:grohit41@gmail.com) | [LinkedIn: ROHITG41](https://www.linkedin.com/in/ROHITG41)
+**Contact:** Rohit Kumar, PMP, CEng (India), CEA, FSEr (TÜV) | Email: [grohit41@gmail.com](mailto:grohit41@gmail.com) | [LinkedIn: ROHITG41](https://www.linkedin.com/in/ROHITG41) | X: [@RohitG_AI](https://x.com/RohitG_AI)
 
 ---
 
@@ -148,6 +149,6 @@ Mission-Critical Infrastructure & Systems Engineering Specialist, New Delhi
 
 Copyright (c) 2026 Rohit Kumar. All rights reserved.
 This repository is published for viewing and evaluation. Reuse, redistribution or commercial use requires written permission.
-For pilots, collaboration or licensing, please reach out by email at [grohit41@gmail.com](mailto:grohit41@gmail.com) or on [LinkedIn](https://www.linkedin.com/in/ROHITG41).
+For pilots, collaboration or licensing, please reach out by email at [grohit41@gmail.com](mailto:grohit41@gmail.com), on [LinkedIn](https://www.linkedin.com/in/ROHITG41) or on X ([@RohitG_AI](https://x.com/RohitG_AI)).
 
 </div>

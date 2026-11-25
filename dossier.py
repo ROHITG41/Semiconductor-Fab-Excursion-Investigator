@@ -10,6 +10,7 @@ from io import BytesIO
 from xml.sax.saxutils import escape
 
 from reportlab.lib import colors
+from reportlab.lib.utils import ImageReader
 from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
@@ -27,9 +28,9 @@ CELL = ParagraphStyle("cell", parent=BODY, fontSize=8, leading=10)
 H1 = ParagraphStyle("h1", parent=SS["Heading1"], fontSize=15, spaceAfter=4)
 H2 = ParagraphStyle("h2", parent=SS["Heading2"], fontSize=11, spaceBefore=8, spaceAfter=3, textColor=colors.HexColor("#0F2744"))
 AUTHOR_LINE = ("<b>Prepared by:</b> Rohit Kumar, PMP, CEng (India), CEA, FSEr (T\u00dcV) | Mission-Critical Infrastructure & Systems Engineering Specialist<br/>"
-               "<b>Contact:</b> grohit41@gmail.com | LinkedIn: linkedin.com/in/ROHITG41 | "
+               "<b>Contact:</b> grohit41@gmail.com | LinkedIn: linkedin.com/in/ROHITG41 | X: @RohitG_AI | "
                "<b>Repository:</b> github.com/ROHITG41/Semiconductor-Fab-Excursion-Investigator")
-FOOT_RIGHTS = "Copyright (c) 2026 Rohit Kumar. All rights reserved. For pilots or collaboration: grohit41@gmail.com | linkedin.com/in/ROHITG41"
+FOOT_RIGHTS = "Copyright (c) 2026 Rohit Kumar. All rights reserved. For pilots or collaboration: grohit41@gmail.com | linkedin.com/in/ROHITG41 | X @RohitG_AI"
 BANNER = ParagraphStyle("banner", parent=BODY, alignment=TA_CENTER, fontSize=10, leading=13, textColor=colors.white)
 
 
@@ -55,11 +56,44 @@ def _banner(text, color):
     return t
 
 
+_WM_CACHE = {}
+
+
+def _watermark_image():
+    """A transparent page-sized PNG with the author's name and X handle tiled diagonally (cached)."""
+    if "img" not in _WM_CACHE:
+        from PIL import Image, ImageDraw, ImageFont
+        w, h = 827, 1169                                    # A4 at 100 dpi
+        font = None
+        for n in ("arialbd.ttf", "DejaVuSans-Bold.ttf"):
+            try:
+                font = ImageFont.truetype(n, 34)
+                break
+            except OSError:
+                continue
+        font = font or ImageFont.load_default(34)
+        layer = Image.new("RGBA", (int(w * 1.6), int(h * 1.6)), (0, 0, 0, 0))
+        d = ImageDraw.Draw(layer)
+        for row, y in enumerate(range(0, layer.size[1], 230)):
+            for x in range(-300, layer.size[0], 520):
+                d.text((x + (260 if row % 2 else 0), y), "Rohit Kumar | @RohitG_AI", font=font, fill=(71, 85, 105, 24))
+        layer = layer.rotate(30, resample=Image.BICUBIC)
+        ox, oy = (layer.size[0] - w) // 2, (layer.size[1] - h) // 2
+        buf = BytesIO()
+        layer.crop((ox, oy, ox + w, oy + h)).save(buf, format="PNG")
+        buf.seek(0)
+        _WM_CACHE["img"] = ImageReader(buf)
+    return _WM_CACHE["img"]
+
+
 def _footer(signed: bool):
     label = "SIGNED (demo chain) - SIMULATED DATA PORTFOLIO PROTOTYPE" if signed else "UNOFFICIAL DRAFT - NOT SIGNED - SIMULATED DATA"
 
     def draw(canvas, doc):
         canvas.saveState()
+        # faint diagonal signature across the page, drawn first so the content sits on top (an image, so it
+        # never mixes into the page's selectable text)
+        canvas.drawImage(_watermark_image(), 0, 0, width=210 * mm, height=297 * mm, mask="auto")
         canvas.setFont("Helvetica", 7)
         canvas.setFillColor(colors.HexColor("#555555"))
         canvas.drawString(15 * mm, 11.5 * mm, f"Semiconductor Fab Excursion Investigator | {label}")
