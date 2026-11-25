@@ -26,7 +26,7 @@ MAX_DRAFT_RETRIES = int(os.getenv("MAX_DRAFT_RETRIES", "1"))
 LLM_TIMEOUT_S = int(os.getenv("LLM_TIMEOUT_S", "60"))
 LLM_MAX_RETRIES = int(os.getenv("LLM_MAX_RETRIES", "4"))    # exponential backoff on 429/5xx
 
-DATA_NOTICE = ("SYNTHETIC DATA - PROTOTYPE evaluated on synthetic fab data; next step is a pilot on real fab data. "
+DATA_NOTICE = ("SIMULATED DATA - PROTOTYPE evaluated on simulated fab data; next step is a pilot on real fab data. "
                "Outputs are UNOFFICIAL DRAFTS that require human engineering review.")
 STANDARDS_TAG = "to be verified against the standard"
 

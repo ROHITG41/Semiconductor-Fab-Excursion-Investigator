@@ -38,7 +38,8 @@ st.info(
     "**2)** Choose *Replay* (a recorded live Gemini run) or *Scripted offline demo* (rules, no AI), then press **Run investigation**. "
     "**3)** Read the three layers: the PASS / INDETERMINATE / FAIL verdict is decided by **code**; the likely cause is a **draft from the AI**; "
     "a **named human** signs it off. Open *Evidence* to see every tool result behind the draft, and download the PDF dossier. "
-    "Worth trying: **S07** (an injected instruction in the operator notes is withheld), **S12** (sensor fault with valid calibration), "
+    "Worth trying: **S07** (a UV lamp wearing out while an operator note tries to hide it: the note is withheld and the cause is still found), "
+    "**S12** (sensor fault with valid calibration), "
     "**S13** (a tool is offline and the report says so).")
 st.warning(config.DATA_NOTICE)
 

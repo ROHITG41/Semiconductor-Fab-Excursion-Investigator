@@ -119,7 +119,7 @@ def check_targets(agg: dict, targets: dict) -> list[dict]:
 
 
 LIMITS = """\
-- The data is **synthetic**. I wrote the simulator, the scenarios and the knowledge base. Nothing here shows how the system would do on a real fab's historian and maintenance records.
+- The data is **simulated**. I wrote the simulator, the scenarios and the knowledge base. Nothing here shows how the system would do on a real fab's historian and maintenance records.
 - The sample is small. Each result is a handful of runs, so the percentage ranges (95% Wilson intervals) are wide. Read "5/5" as "no failure seen yet", not as "never fails".
 - The models use fixed sampling settings, so repeated runs of the same scenario can differ. That is why each scenario is run several times.
 - The "rules" baseline is a hand-written engine that I tuned on the 10 core scenarios (not on the hard tier). It is a reference, not an independent competitor, and it is fixed, so its 0% on the hard tier shows brittleness, not that a better rule set could not be written.

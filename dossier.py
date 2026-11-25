@@ -56,7 +56,7 @@ def _banner(text, color):
 
 
 def _footer(signed: bool):
-    label = "SIGNED (demo chain) - SYNTHETIC DATA PORTFOLIO PROTOTYPE" if signed else "UNOFFICIAL DRAFT - NOT SIGNED - SYNTHETIC DATA"
+    label = "SIGNED (demo chain) - SIMULATED DATA PORTFOLIO PROTOTYPE" if signed else "UNOFFICIAL DRAFT - NOT SIGNED - SIMULATED DATA"
 
     def draw(canvas, doc):
         canvas.saveState()
