@@ -124,11 +124,11 @@ Note: in the two scenarios whose handover note contains an injection (S07 and S1
 
 ## 5. Limits you must carry into any claim
 
-- The data is **synthetic**. I wrote the simulator, the scenarios and the knowledge base. Nothing here shows how the system would do on a real fab's historian and maintenance records.
+- The data is **simulated**. I wrote the simulator, the scenarios and the knowledge base. Nothing here shows how the system would do on a real fab's historian and maintenance records.
 - The sample is small. Each result is a handful of runs, so the percentage ranges (95% Wilson intervals) are wide. Read "5/5" as "no failure seen yet", not as "never fails".
 - The models use fixed sampling settings, so repeated runs of the same scenario can differ. That is why each scenario is run several times.
 - The "rules" baseline is a hand-written engine that I tuned on the 10 core scenarios (not on the hard tier). It is a reference, not an independent competitor, and it is fixed, so its 0% on the hard tier shows brittleness, not that a better rule set could not be written.
 - The agent and the one-shot baseline are not perfectly like for like: the agent graph may redraft once after a validator failure; the one-shot gets a single draft. Compare their cause accuracy more than their validator pass rate.
 - The injection scanner is a pattern matcher. The evasive attacks show what it misses. The protection that holds is architectural: verdicts come from code, and a human signs.
 - Results apply only to the model names and dates recorded in this report. A new model version needs a new run.
-- Not validated for fab use. Not a GMP, Part 11 or safety-rated system.
+- Not yet tested on real fab data. Not a GMP, Part 11 or safety-rated system.
